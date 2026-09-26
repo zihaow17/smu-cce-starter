@@ -10,32 +10,30 @@ This project is designed to run in a Python environment. The steps below work in
     source .venv/bin/activate
     ```
 
-3. Install the project dependencies and Jupyter:
+3. Install the project dependencies:
 
     ```bash
     python -m pip install --upgrade pip
-    python -m pip install -r requirements.txt jupyter
+    python -m pip install -r requirements.txt
     ```
-
-4. Start Jupyter:
+4. Start the Streamlit application from the repository folder:
 
     ```bash
-    python -m jupyter notebook
+    streamlit run src/app.py
     ```
-
-5. Open a notebook in the `notebooks/` folder, select the `.venv` Python kernel if asked, and run the cells from top to bottom. The notebooks retrieve current financial data, so an internet connection is required.
-
-This starter repository currently runs as notebooks; it does not yet include a standalone `app.py` file to launch with Streamlit.
+The app retrieves current financial data, so an internet connection is required. You can still explore the original notebooks in `notebooks/` by installing Jupyter with `python -m pip install jupyter` and starting it with `python -m jupyter notebook`.
 
 ## Code Walkthrough
 
-- `requirements.txt` lists the Python packages used by the project: `yfinance` for financial data, `pandas` for data handling, and `streamlit` for future app development.
+- `requirements.txt` lists the Python packages used by the project: `yfinance` for financial data, `pandas` for data handling, and `streamlit` for the web app.
+- `src/app.py` contains the Streamlit interface. Enter a ticker, choose an analysis, and select **Run**.
+- `src/analysis.py` contains reusable functions for company financial statements, news, price, and analyst recommendations.
 - `notebooks/filings.ipynb` loads a stock ticker and displays its income statement, balance sheet, and cash flow information.
 - `notebooks/news.ipynb` loads recent news for a ticker and prints article titles and descriptions.
 - `notebooks/stock_price_ratings.ipynb` displays a ticker's current price and recent analyst recommendations.
 - `lessons/` contains course instructions and learning materials.
 
-To use the project from start to finish, install the dependencies, open one of the notebooks, and run its cells in order. Each notebook imports `yfinance`, defines a small function for its task, and calls that function with a sample ticker such as `MU` or `GOOG`. You can replace the sample ticker with another supported ticker to explore different companies.
+The Streamlit app and the notebooks use Yahoo Finance data. Some tickers may not have all types of financial statements, news, prices, or analyst recommendations available.
 
  # Cloud Computing for Economics: Starter Repo 
 
@@ -58,6 +56,7 @@ To use the project from start to finish, install the dependencies, open one of t
 
   ```text
   .
+    ├── src/              # Streamlit app and reusable analysis functions
   ├── lessons/          # Step-by-step course instructions
   ├── notebooks/        # Starter financial-data notebooks
   ├── requirements.txt  # Python dependencies
